@@ -1,0 +1,21 @@
+{
+  "name": "test",
+  "version": 2,
+  "public": false,
+  "builds": [
+    {
+      "src": "./frontend/package.json",
+      "use": "@now/static-build",
+      "config": { "distDir": "build" }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "frontend/$1",
+      "continue": true
+    },
+    { "handle": "filesystem" },
+    { "src": ".*", "dest": "frontend/index.html" }
+  ]
+}
